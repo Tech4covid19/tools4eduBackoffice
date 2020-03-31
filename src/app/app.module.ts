@@ -22,6 +22,7 @@ import { ApolloBoostModule, ApolloBoost, APOLLO_OPTIONS, InMemoryCache} from 'ap
 import { AuthService } from './services/auth.service';
 import { HttpLink } from 'apollo-angular-link-http';
 import ApolloClient from 'apollo-boost';
+import { ArraySortPipe } from './app.pipes';
 
 const API_URL = 'https://cnom3x70jk.execute-api.eu-central-1.amazonaws.com/dev/graphql';
 
@@ -72,9 +73,15 @@ const API_URL = 'https://cnom3x70jk.execute-api.eu-central-1.amazonaws.com/dev/g
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    //ArraySortPipe
   ],
+  exports : [
+    //ArraySortPipe
+  ],
+
   providers: [
+    //ArraySortPipe,
     AuthGuardService,
     AuthService,
     {
@@ -82,13 +89,19 @@ const API_URL = 'https://cnom3x70jk.execute-api.eu-central-1.amazonaws.com/dev/g
       useFactory(httpLink : HttpLink){
         const token = localStorage.getItem('token');
         return {
-          cache : new InMemoryCache(),
+         /*  fetchOptions: {
+            mode: 'no-cors',
+          }, */
+          cache: new InMemoryCache({
+            addTypename: false
+          }),
           link : httpLink.create({
             uri: API_URL
           }),
           headers : new HttpHeaders({
             Authorization : `Bearer ${token}`,
-            "Access-Control-Allow-Origin" : "http://localhost:4200"
+            /* "Access-Control-Allow-Origin" : "*",
+            "Access-COntrol-Allow-Methods" : "GET,POST,OPTIONS,DELETE,PUT" */
           })
         }
       },

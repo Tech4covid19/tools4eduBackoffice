@@ -6,6 +6,9 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { CustomTableComponent } from './table/table.component'
+import { ArraySortPipe } from '../app.pipes';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,12 +18,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    CustomTableComponent,
+    ArraySortPipe
+
+  ],
+  providers : [
+    ArraySortPipe
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    CustomTableComponent
   ]
 })
 export class ComponentsModule { }
