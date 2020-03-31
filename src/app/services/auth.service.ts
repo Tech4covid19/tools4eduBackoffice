@@ -17,8 +17,8 @@ export class AuthService{
         
     }
 
-    private updateLogIn(isAuthenticated : boolean){
-        this.isAuthenticated.next(isAuthenticated);
+    private updateLogIn(isAuthenticatedUpdate : boolean){
+        this.isAuthenticated.next(isAuthenticatedUpdate);
     }
 
     public isLoggedIn(){
@@ -35,7 +35,7 @@ export class AuthService{
 
     public logout(){
         this.updateLogIn(false);
-        this.setToken('');
+        this.setToken(undefined);
     }
 
     public login(/* email : string, password : string */ provider : string){

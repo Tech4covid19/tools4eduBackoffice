@@ -11,11 +11,17 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
-import { TestimonialsComponent } from '../../pages/testimonials/testimonials.component';
+import { TestimonialsComponent } from '../../pages/testimonials/createEdit/testimonials.component';
+import { TestimonialsListComponent } from '../../pages/testimonials/testimonialsList/testimonialsList.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BlogFormComponent } from '../../pages/blogForm/blogForm.component';
 import { VideosComponent } from '../../pages/videos/videos.component';
+import { TestimonialsListService } from '../../pages/testimonials/testimonialsList/testimonialsList.service';
 // import { ToastrModule } from 'ngx-toastr';
+import { ComponentsModule } from '../../components/components.module';
+
+import { CustomTableComponent } from '../../components/table/table.component';
+import { ArraySortPipe } from '../../app.pipes';
 
 @NgModule({
   imports: [
@@ -25,7 +31,9 @@ import { VideosComponent } from '../../pages/videos/videos.component';
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsModule
+
   ],
   declarations: [
     DashboardComponent,
@@ -34,8 +42,17 @@ import { VideosComponent } from '../../pages/videos/videos.component';
     IconsComponent,
     MapsComponent,
     TestimonialsComponent,
+    TestimonialsListComponent,
     BlogFormComponent,
-    VideosComponent
+    VideosComponent,
+    //ArraySortPipe
+  ],
+  providers : [
+    //ArraySortPipe,
+    TestimonialsListService
+  ],
+  exports : [
+    //ArraySortPipe
   ]
 })
 
